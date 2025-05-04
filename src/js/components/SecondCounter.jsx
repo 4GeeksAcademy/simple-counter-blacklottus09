@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 const SecondCounter = () => {
-  const [x, setCounter] = useState(0);
-  const [y, sety] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const [stopCounter, setStopCounter] = useState(false);
 
   useEffect(() => {
-    if (!y) {
+    if (!stopCounter) {
       const intervalId = setInterval(() => {
-        setCounter(x + 1);
+        setCounter(counter + 1);
       }, 1000);
       return () => clearInterval(intervalId);
     }
-  }, [x, y]);
+  }, [counter, stopCounter]);
 
   const restartCounter = () => {
     setCounter(0);
@@ -26,12 +26,12 @@ const SecondCounter = () => {
               <div className="counter-number text-light m-2 p-2 ">
                 <i className="far fa-clock"></i>
               </div>
-              <div className="counter-number text-light m-2 p-2">{Math.floor((x / 100000) % 10)}</div>
-              <div className="counter-number text-light m-2 p-2">{Math.floor((x / 10000) % 10)}</div>
-              <div className="counter-number text-light m-2 p-2">{Math.floor((x / 1000) % 10)}</div>
-              <div className="counter-number text-light m-2 p-2">{Math.floor((x / 100) % 10)}</div>
-              <div className="counter-number text-light m-2 p-2">{Math.floor((x / 10) % 10)}</div>
-              <div className="counter-number text-light m-2 p-2">{Math.floor((x / 1) % 10)}</div>
+              <div className="counter-number text-light m-2 p-2">{Math.floor((counter / 100000) % 10)}</div>
+              <div className="counter-number text-light m-2 p-2">{Math.floor((counter / 10000) % 10)}</div>
+              <div className="counter-number text-light m-2 p-2">{Math.floor((counter / 1000) % 10)}</div>
+              <div className="counter-number text-light m-2 p-2">{Math.floor((counter / 100) % 10)}</div>
+              <div className="counter-number text-light m-2 p-2">{Math.floor((counter / 10) % 10)}</div>
+              <div className="counter-number text-light m-2 p-2">{Math.floor((counter / 1) % 10)}</div>
             </div>
           </div>
         </div>
@@ -39,13 +39,13 @@ const SecondCounter = () => {
       <div className="d-flex justify-content-center">
         <button
           className="btn btn-secondary"
-          onClick={() => sety(true)}
+          onClick={() => setStopCounter(true)}
         >
           Stop
         </button>
         <button
           className="btn btn-success"
-          onClick={() => sety(false)}
+          onClick={() => setStopCounter(false)}
         >
           Resume
         </button>
